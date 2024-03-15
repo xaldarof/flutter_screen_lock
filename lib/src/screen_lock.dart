@@ -31,6 +31,7 @@ class ScreenLock extends StatefulWidget {
     this.deleteButton,
     this.inputController,
     this.secretsBuilder,
+    this.enabled = true,
     this.useBlur = true,
     this.useLandscape = true,
   })  : title = title ?? const Text('Please enter passcode.'),
@@ -66,6 +67,7 @@ class ScreenLock extends StatefulWidget {
     this.deleteButton,
     this.inputController,
     this.secretsBuilder,
+    this.enabled = true,
     this.useBlur = true,
     this.useLandscape = true,
   })  : correctString = null,
@@ -163,6 +165,8 @@ class ScreenLock extends StatefulWidget {
   /// Use a landscape orientation when sufficient width is available.
   final bool useLandscape;
 
+  final bool enabled;
+
   @override
   State<ScreenLock> createState() => _ScreenLockState();
 }
@@ -183,6 +187,7 @@ class _ScreenLockState extends State<ScreenLock> {
   @override
   void initState() {
     super.initState();
+    enabled = widget.enabled;
     inputController.initialize(
       correctString: widget.correctString,
       digits: widget.digits,
