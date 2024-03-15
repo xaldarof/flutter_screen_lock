@@ -359,7 +359,7 @@ class _ScreenLockState extends State<ScreenLock> {
     Widget buildKeyPad() {
       return Center(
         child: KeyPad(
-          enabled: enabled && !inputDelayed,
+          enabled: enabled,
           config: widget.keyPadConfig,
           inputState: inputController,
           didCancelled: widget.onCancelled,
