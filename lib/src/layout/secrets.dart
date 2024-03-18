@@ -113,7 +113,7 @@ class _SecretsState extends State<Secrets> with SingleTickerProviderStateMixin {
               spacing: widget.config.spacing,
               children: List.generate(
                 widget.length,
-                (index) {
+                    (index) {
                   if (value.isEmpty) {
                     return Secret(
                       config: widget.config.secretConfig,

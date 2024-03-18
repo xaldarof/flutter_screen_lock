@@ -379,14 +379,8 @@ class _ScreenLockState extends State<ScreenLock> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               direction: orientations[orientation]!,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    buildHeadingText(),
-                    buildSecrets(),
-                  ],
-                ),
-                buildKeyPad(),
+                buildHeadingText(),
+                buildSecrets(),
               ],
             ),
             if (widget.footer != null) widget.footer!,
