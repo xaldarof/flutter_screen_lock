@@ -376,7 +376,7 @@ class _ScreenLockState extends State<ScreenLock> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flex(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               direction: orientations[orientation]!,
               children: [
                 Column(
