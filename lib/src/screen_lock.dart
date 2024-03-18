@@ -27,6 +27,7 @@ class ScreenLock extends StatefulWidget {
     this.keyPadConfig,
     this.delayBuilder,
     this.customizedButtonChild,
+    this.keyPadEnabled,
     this.customizedButtonTap,
     this.footer,
     this.cancelButton,
@@ -63,6 +64,7 @@ class ScreenLock extends StatefulWidget {
     this.keyPadConfig,
     this.delayBuilder,
     this.customizedButtonChild,
+    this.keyPadEnabled,
     this.customizedButtonTap,
     this.keyPadTop,
     this.footer,
@@ -172,6 +174,7 @@ class ScreenLock extends StatefulWidget {
 
   final Widget? secretsBottom;
   final Widget? keyPadTop;
+  final bool? keyPadEnabled;
 
   @override
   State<ScreenLock> createState() => _ScreenLockState();
@@ -359,8 +362,9 @@ class _ScreenLockState extends State<ScreenLock> {
     }
 
     Widget buildKeyPad() {
-      return Center(
-        child: Container(
+      return Opacity(
+        opacity: widget.keyPadEnabled == true ? 1 : 0.5,
+        child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
