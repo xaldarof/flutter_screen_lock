@@ -86,8 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       screenLockCreate(
                         context: context,
                         inputController: controller,
-                        onConfirmed: (matchedText) =>
-                            Navigator.of(context).pop(),
+                        onConfirmed: (matchedText) => Navigator.of(context).pop(),
                         footer: TextButton(
                           onPressed: () {
                             // Release the confirmation state and return to the initial input state.
@@ -160,9 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context, config, enabled) => Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                color: enabled
-                                    ? config.enabledColor
-                                    : config.disabledColor,
+                                color: enabled ? config.enabledColor : config.disabledColor,
                                 border: Border.all(
                                   width: config.borderSize,
                                   color: config.borderColor,
@@ -307,8 +304,7 @@ class NextPage extends StatelessWidget {
   const NextPage({super.key});
 
   static show(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const NextPage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NextPage()));
   }
 
   @override
@@ -336,8 +332,7 @@ class SecretsWithCustomAnimation extends StatefulWidget {
   final Stream<bool> verifyStream;
 
   @override
-  State<SecretsWithCustomAnimation> createState() =>
-      _SecretsWithCustomAnimationState();
+  State<SecretsWithCustomAnimation> createState() => _SecretsWithCustomAnimationState();
 }
 
 class _SecretsWithCustomAnimationState extends State<SecretsWithCustomAnimation>
@@ -385,6 +380,7 @@ class _SecretsWithCustomAnimationState extends State<SecretsWithCustomAnimation>
         input: widget.input,
         length: widget.length,
         config: widget.config,
+        secretsBottom: const Text('data'),
       ),
     );
   }

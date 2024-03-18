@@ -107,6 +107,7 @@ class _SecretsState extends State<Secrets> with SingleTickerProviderStateMixin {
       builder: (context, value, child) => Padding(
         padding: widget.config.padding,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Wrap(
               spacing: widget.config.spacing,
@@ -128,9 +129,8 @@ class _SecretsState extends State<Secrets> with SingleTickerProviderStateMixin {
                 growable: false,
               ),
             ),
-            if (widget.secretsBottom != null) widget.secretsBottom,
+            if (widget.secretsBottom != null) widget.secretsBottom!,
           ],
-          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );
