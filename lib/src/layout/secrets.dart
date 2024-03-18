@@ -12,20 +12,20 @@ class SecretsWithShakingAnimation extends StatefulWidget {
     required this.length,
     required this.input,
     required this.verifyStream,
+    required this.secretsBottom,
   });
 
   final SecretsConfig config;
   final int length;
   final ValueListenable<String> input;
   final Stream<bool> verifyStream;
+  final Widget? secretsBottom;
 
   @override
-  State<SecretsWithShakingAnimation> createState() =>
-      _SecretsWithShakingAnimationState();
+  State<SecretsWithShakingAnimation> createState() => _SecretsWithShakingAnimationState();
 }
 
-class _SecretsWithShakingAnimationState
-    extends State<SecretsWithShakingAnimation>
+class _SecretsWithShakingAnimationState extends State<SecretsWithShakingAnimation>
     with SingleTickerProviderStateMixin {
   late Animation<Offset> _animation;
   late AnimationController _animationController;
@@ -75,6 +75,7 @@ class _SecretsWithShakingAnimationState
         input: widget.input,
         length: widget.length,
         config: widget.config,
+        secretsBottom: widget.secretsBottom,
       ),
     );
   }
@@ -86,11 +87,13 @@ class Secrets extends StatefulWidget {
     SecretsConfig? config,
     required this.input,
     required this.length,
+    required this.secretsBottom,
   }) : config = config ?? const SecretsConfig();
 
   final SecretsConfig config;
   final ValueListenable<String> input;
   final int length;
+  final Widget? secretsBottom;
 
   @override
   State<Secrets> createState() => _SecretsState();
@@ -103,25 +106,31 @@ class _SecretsState extends State<Secrets> with SingleTickerProviderStateMixin {
       valueListenable: widget.input,
       builder: (context, value, child) => Padding(
         padding: widget.config.padding,
-        child: Wrap(
-          spacing: widget.config.spacing,
-          children: List.generate(
-            widget.length,
-            (index) {
-              if (value.isEmpty) {
-                return Secret(
-                  config: widget.config.secretConfig,
-                  enabled: false,
-                );
-              }
+        child: Column(
+          children: [
+            Wrap(
+              spacing: widget.config.spacing,
+              children: List.generate(
+                widget.length,
+                (index) {
+                  if (value.isEmpty) {
+                    return Secret(
+                      config: widget.config.secretConfig,
+                      enabled: false,
+                    );
+                  }
 
-              return Secret(
-                config: widget.config.secretConfig,
-                enabled: index < value.length,
-              );
-            },
-            growable: false,
-          ),
+                  return Secret(
+                    config: widget.config.secretConfig,
+                    enabled: index < value.length,
+                  );
+                },
+                growable: false,
+              ),
+            ),
+            if (widget.secretsBottom != null) widget.secretsBottom,
+          ],
+          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );
