@@ -32,6 +32,7 @@ class ScreenLock extends StatefulWidget {
     this.footer,
     this.cancelButton,
     this.deleteButton,
+    this.onSubmit,
     this.inputController,
     this.secretsBuilder,
     this.enabled = true,
@@ -73,6 +74,7 @@ class ScreenLock extends StatefulWidget {
     this.inputController,
     this.secretsBuilder,
     this.secretsBottom,
+    this.onSubmit,
     this.enabled = true,
     this.useBlur = true,
     this.useLandscape = true,
@@ -175,6 +177,7 @@ class ScreenLock extends StatefulWidget {
   final Widget? secretsBottom;
   final Widget? keyPadTop;
   final bool? keyPadEnabled;
+  final Function()? onSubmit;
 
   @override
   State<ScreenLock> createState() => _ScreenLockState();
@@ -202,6 +205,7 @@ class _ScreenLockState extends State<ScreenLock> {
     );
 
     inputController.verifyInput.listen((success) {
+      widget.onSubmit?.call();
       if (success) {
         setState(() {
           enabled = false;
