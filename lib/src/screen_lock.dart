@@ -17,6 +17,7 @@ class ScreenLock extends StatefulWidget {
     this.onCancelled,
     this.onError,
     this.onMaxRetries,
+    this.keyPadTop,
     this.secretsBottom,
     this.maxRetries = 0,
     this.retryDelay = Duration.zero,
@@ -63,6 +64,7 @@ class ScreenLock extends StatefulWidget {
     this.delayBuilder,
     this.customizedButtonChild,
     this.customizedButtonTap,
+    this.keyPadTop,
     this.footer,
     this.cancelButton,
     this.deleteButton,
@@ -169,6 +171,7 @@ class ScreenLock extends StatefulWidget {
   final bool enabled;
 
   final Widget? secretsBottom;
+  final Widget? keyPadTop;
 
   @override
   State<ScreenLock> createState() => _ScreenLockState();
@@ -357,15 +360,23 @@ class _ScreenLockState extends State<ScreenLock> {
 
     Widget buildKeyPad() {
       return Center(
-        child: KeyPad(
-          enabled: enabled,
-          config: widget.keyPadConfig,
-          inputState: inputController,
-          didCancelled: widget.onCancelled,
-          customizedButtonTap: widget.customizedButtonTap,
-          customizedButtonChild: widget.customizedButtonChild,
-          deleteButton: widget.deleteButton,
-          cancelButton: widget.cancelButton,
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.keyPadTop != null) widget.keyPadTop!,
+              KeyPad(
+                enabled: enabled,
+                config: widget.keyPadConfig,
+                inputState: inputController,
+                didCancelled: widget.onCancelled,
+                customizedButtonTap: widget.customizedButtonTap,
+                customizedButtonChild: widget.customizedButtonChild,
+                deleteButton: widget.deleteButton,
+                cancelButton: widget.cancelButton,
+              ),
+            ],
+          ),
         ),
       );
     }
